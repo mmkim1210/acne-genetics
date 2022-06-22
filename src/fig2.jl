@@ -27,7 +27,7 @@ gencode.gene_id = gencode.gene_name
 @time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05")
 @assert size(kgp_raw) == (503, 7_230_618)
 
-@info "Load GWAS results."
+@info "Load GWAS results"
 [delete!(GeneticsMakie.gwas, key) for key in ["mdd", "as", "celiac"]]
 
 gwas = []
@@ -53,20 +53,20 @@ titles = [GeneticsMakie.gwas[key].title for key in phenos]
 
 function locuszoom(genes)
     for gene in genes
-        @info "Working on $gene gene."
+        @info "Working on $gene gene"
         window = 1e6
         chr, start, stop = GeneticsMakie.findgene(gene, gencode)
         range1, range2 = start - window, stop + window
         range1 < 0 ? range1 = 0 : nothing
         range2 > GeneticsMakie.GRCh37_totlength[chr] ? range2 = GeneticsMakie.GRCh37_totlength[chr] : nothing
         
-        @info "Subsetting 1000 Genomes."
+        @info "Subsetting 1000 Genomes"
         @time kgp = subsetref(kgp_raw, chr, range1, range2, "data/kgp.filtered")
 
-        @info "Subsetting GWAS results."
+        @info "Subsetting GWAS results"
         @time dfs = subsetgwas(gwas, chr, range1, range2)
 
-        @info "Plotting phenome-wide LocusZoom."
+        @info "Plotting phenome-wide LocusZoom"
         n = length(titles)
         m = div(length(titles), 2)
         f = Figure(resolution = (612, 1500))
