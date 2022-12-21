@@ -20,7 +20,7 @@ issig(P::AbstractVector; p = 5e-8) = any(P .< p)
 issig(df::DataFrame; p = 5e-8) = issig(df.P; p = p)
 
 @info "Loading GENCODE"
-@time gencode = Arrow.Table("data/gencode/gencode.v39lift37.annotation.parsed.gtf.arrow")|> DataFrame
+@time gencode = Arrow.Table("data/gencode/gencode.v39lift37.annotation.gtf.arrow")|> DataFrame
 gencode.gene_id = gencode.gene_name
 
 @info "Loading 1000 Genomes reference panel"
