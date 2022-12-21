@@ -20,7 +20,7 @@ issig(P::AbstractVector; p = 5e-8) = any(P .< p)
 issig(df::DataFrame; p = 5e-8) = issig(df.P; p = p)
 
 @info "Loading GENCODE"
-@time gencode = Arrow.Table("data/gencode/gencode.v39lift37.annotation.parsed.gtf.arrow")|> DataFrame
+@time gencode = Arrow.Table("data/gencode/gencode.v39lift37.annotation.gtf.arrow")|> DataFrame
 gencode.gene_id = gencode.gene_name
 
 @info "Loading 1000 Genomes reference panel"
@@ -150,6 +150,8 @@ function locuszoom(genes)
 end
 
 loci = GeneticsMakie.findgwasloci(gwas[51])
-filter!(x -> !(x.CHR == "6" && x.BP > 26e6 && x.BP < 34e6), loci)
+filter!(x -> !(x.CHR == "6" && x.BP > 24e6 && x.BP < 34e6), loci)
+filter!(x -> !(x.CHR == "5" && x.BP > 129e6 && x.BP < 132e6), loci)
+filter!(x -> !(x.CHR == "8" && x.BP > 7e6 && x.BP < 13e6), loci)
 loci1 = GeneticsMakie.findclosestgene(loci, gencode; proteincoding = true)
 locuszoom(loci1.gene)

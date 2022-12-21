@@ -119,8 +119,10 @@ for (i, gene) in enumerate(loci1.gene)
                 colormap = cgrad(locuszoomcolors, 5, categorical = true, rev = true))
             scatter!(axs[1], [maximum(x)], [y[argmax(x)]], color = :purple1, markersize = 4.0, marker = '◆')
             scatter!(axs[2], [x[argmax(y)]], [maximum(y)], color = :purple1, markersize = 4.0, marker = '◆')
-            text!(axs[1], "$(storage.SNP[argmax(x)])", position = (maximum(x), y[argmax(x)]), textsize = 5, align = (:right, :bottom))
-            text!(axs[2], "$(storage.SNP[argmax(y)])", position = (x[argmax(y)], maximum(y)), textsize = 5, align = (:left, :center))
+            text!(axs[1], "$(storage.SNP_1[argmax(x)])", position = (maximum(x), y[argmax(x)]), textsize = 5, align = (:right, :bottom))
+            text!(axs[2], "$(storage.SNP_1[argmax(y)])", position = (x[argmax(y)], maximum(y)), textsize = 5, align = (:left, :center))
+            [vlines!(axs[i], -log10(5e-8), color = (:gold, 0.5), linewidth = 0.5) for i in 1:2]
+            [hlines!(axs[i], -log10(5e-8), color = (:gold, 0.5), linewidth = 0.5) for i in 1:2]
             axs[1].spinewidth = 0.75
             axs[1].ytickwidth = 0.75
             axs[1].ylabelsize = 6
