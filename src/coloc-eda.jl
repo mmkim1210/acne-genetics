@@ -56,8 +56,8 @@ newtitles = [getindex(i, 1) for i in split.(titles, " (")]
 gencode.gene_id = gencode.gene_name
 
 @info "Loading 1000 Genomes reference panel"
-@time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05")
-@assert size(kgp_raw) == (503, 7_230_618)
+@time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05.geno")
+@assert size(kgp_raw) == (503, 7_230_539)
 
 ind = findfirst(isequal("acne"), phenos)
 loci = GeneticsMakie.findgwasloci(gwas[ind])

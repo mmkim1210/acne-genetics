@@ -70,8 +70,8 @@ newtitles[findfirst(isequal("Mean platelet volume"), newtitles)] = "MPV"
 gencode.gene_id = gencode.gene_name
 
 @info "Loading 1000 Genomes reference panel"
-@time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05")
-@assert size(kgp_raw) == (503, 7_230_618)
+@time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05.geno")
+@assert size(kgp_raw) == (503, 7_230_539)
 
 focus = Dict(
     "WNT10A" => ["bald"],

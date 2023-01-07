@@ -24,8 +24,8 @@ issig(df::DataFrame; p = 5e-8) = issig(df.P; p = p)
 gencode.gene_id = gencode.gene_name
 
 @info "Loading 1000 Genomes reference panel"
-@time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05")
-@assert size(kgp_raw) == (503, 7_230_618)
+@time kgp_raw = SnpData("data/1kg/kgp.eur.maf0.05.geno")
+@assert size(kgp_raw) == (503, 7_230_539)
 
 @info "Load GWAS results"
 [delete!(GeneticsMakie.gwas, key) for key in ["mdd", "as", "celiac"]]
